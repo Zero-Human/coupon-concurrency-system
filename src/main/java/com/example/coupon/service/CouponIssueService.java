@@ -1,5 +1,5 @@
 package com.example.coupon.service;
 
 public interface CouponIssueService {
-    void issue(Long id, Long userId);
+    void issue(Long couponId, Long userId);
 }
