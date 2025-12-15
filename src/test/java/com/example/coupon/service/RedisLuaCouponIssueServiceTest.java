@@ -73,7 +73,6 @@ class RedisLuaCouponIssueServiceTest {
         latch.await();
 
         long issuedCount = issuedCouponRepository.count();
-        Coupon coupon = couponRepository.findAll().get(0);
 
         // 발급된 수량은 최대 재고(100)를 넘지 않아야 함
         assertThat(issuedCount).isEqualTo(100L);
