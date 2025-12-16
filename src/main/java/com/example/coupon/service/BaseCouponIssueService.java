@@ -10,6 +10,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class BaseCouponIssueService implements CouponIssueService {
@@ -37,5 +39,11 @@ public class BaseCouponIssueService implements CouponIssueService {
         couponRepository.save(coupon);
         redisTemplate.opsForValue()
                 .set("coupon:" + coupon.getId() + ":stock",String.valueOf(coupon.getQuantity()));
+    }
+    public void redisReset(){
+        Set<String> keys = redisTemplate.keys("coupon:*");
+        if (keys != null && !keys.isEmpty()) {
+            redisTemplate.delete(keys);
+        }
     }
 }

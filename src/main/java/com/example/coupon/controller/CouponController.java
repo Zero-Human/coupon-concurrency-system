@@ -54,4 +54,9 @@ public class CouponController {
         baseCouponIssueService.createCouponByRedisLua(createCouponRequest);
         return "ok";
     }
+    @PostMapping("/redis/reset")
+    public String resetCouponByRedisLua() {
+        baseCouponIssueService.createCouponByRedisLua(createCouponRequest);
+        return "ok";
+    }
 }
