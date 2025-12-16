@@ -31,10 +31,10 @@ class RedisLuaCouponIssueServiceTest {
 
     @BeforeEach
     void setUp() {
-        issuedCouponRepository.deleteAll();
-        issuedCouponRepository.resetAutoIncrement();
-        couponRepository.deleteAll();
-        couponRepository.resetAutoIncrement();
+//        issuedCouponRepository.deleteAll();
+//        issuedCouponRepository.resetAutoIncrement();
+//        couponRepository.deleteAll();
+//        couponRepository.resetAutoIncrement();
         Set<String> keys = redisTemplate.keys("coupon:*");
         if (keys != null && !keys.isEmpty()) {
             redisTemplate.delete(keys);

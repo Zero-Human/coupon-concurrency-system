@@ -1,5 +1,6 @@
 package com.example.coupon.domain;
 
+import com.example.coupon.config.OutOfStockException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class Coupon {
     // 핵심 비즈니스 로직: 재고 차감
     public void decrease() {
         if (this.quantity <= 0) {
-            throw new RuntimeException("재고가 모두 소진되었습니다.");
+            throw new OutOfStockException();
         }
         this.quantity--;
     }

@@ -34,7 +34,7 @@ public class CouponController {
     // 3. Redis 락 API
     @PostMapping("/{id}/issue/redisson")
     public String issueRedisson(@PathVariable Long id, @RequestBody IssueRequest issueRequest) {
-        redisLockCouponIssueService.issue(id, issueRequest.getUserId());
+        redisLockCouponIssueService.issue2(id, issueRequest.getUserId());
         return "ok";
     }
     // 4. Redis LuaScript 사용 API

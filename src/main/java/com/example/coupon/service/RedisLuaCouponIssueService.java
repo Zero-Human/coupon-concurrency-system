@@ -1,5 +1,6 @@
 package com.example.coupon.service;
 
+import com.example.coupon.config.OutOfStockException;
 import com.example.coupon.domain.CouponIssueResult;
 import com.example.coupon.domain.IssuedCoupon;
 import com.example.coupon.domain.repository.IssuedCouponRepository;
@@ -33,7 +34,7 @@ public class RedisLuaCouponIssueService implements CouponIssueService{
         switch (CouponIssueResult.fromCode(result)) {
             case SUCCESS -> issuedCouponRepository.save(new IssuedCoupon(couponId, userId));
             case DUPLICATED -> {}
-            case SOLD_OUT -> throw new IllegalStateException("쿠폰 재고 소진");
+            case SOLD_OUT -> throw new OutOfStockException();
             default -> throw new IllegalStateException("Redis Lua 실행 실패");
         }
 
